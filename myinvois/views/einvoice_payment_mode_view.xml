@@ -1,0 +1,51 @@
+<odoo>
+
+    <record id="einvoice_payment_mode_tree_view" model="ir.ui.view">
+        <field name="name">einvoice.payment.mode.tree.view</field>
+        <field name="model">einvoice.payment.mode</field>
+        <field name="arch" type="xml">
+            <tree string="Payment Mode">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="payee_financial_account"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="einvoice_payment_mode_form_view" model="ir.ui.view">
+        <field name="name">einvoice.payment.mode.form.view</field>
+        <field name="model">einvoice.payment.mode</field>
+        <field name="arch" type="xml">
+            <form string="Payment Mode">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Name"/>
+                        </h1>
+                    </div>
+                    <group name="header_group">
+                        <group name="group_01">
+                            <field name="code"/>
+                        </group>
+                        <group name="group_02">
+                            <field name="payee_financial_account"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_einvoice_payment_mode" model="ir.actions.act_window">
+        <field name="name">Payment Mode</field>
+        <field name="res_model">einvoice.payment.mode</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_payment_mode"
+        name="Payment Mode" 
+        parent="account.account_account_menu" 
+        sequence="2" 
+        action="action_einvoice_payment_mode"/>
+
+</odoo>

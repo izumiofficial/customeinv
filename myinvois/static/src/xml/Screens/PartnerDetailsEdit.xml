@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="PartnerDetailsEdit" t-inherit="point_of_sale.PartnerDetailsEdit" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('partner-details-box')]" position="inside">
+            <div class="partner-detail col">                                                           
+                <label class="form-label label" for="my_invois_partner_id_value">ID Type</label>
+                <select 
+                    class="detail form-select" 
+                    id="my_invois_partner_id_type" 
+                    name="my_invois_partner_id_type" 
+                    t-model="changes.my_invois_partner_id_type"
+                    t-on-change="captureChange">
+                        <option value="">None</option>
+                        <option value="nric">NRIC</option>
+                        <option value="pass_num">Passport Number</option>
+                        <option value="brn">Bussines Register Number (BRN)</option>
+                        <option value="army">Army Number</option>
+                </select>
+            </div>
+            <div class="partner-detail col">                                                           
+                <label class="form-label label" for="my_invois_sst">SST Number</label>                           
+                <input 
+                    class="detail my_invois_sst form-control" 
+                    placeholder="SST Registration Number"
+                    id="my_invois_sst" 
+                    name="my_invois_sst"
+                    t-model="changes.my_invois_sst" 
+                    t-on-change="captureChange" 
+            </div>
+            <div class="partner-detail col">                                                           
+                <label class="form-label label" for="status_partner_validated_tin">TIN Status</label>
+                <select 
+                    class="detail form-select" 
+                    id="status_partner_validated_tin" 
+                    name="status_partner_validated_tin" 
+                    t-model="changes.status_partner_validated_tin" 
+                    t-on-change="captureChange"
+                    disabled="disabled">
+                        <option value="">None</option>
+                        <option value="draft">Never Verified Before</option>
+                        <option value="validated">Validated</option>
+                        <option value="invalid">Invalid</option>
+                </select>
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('partner-details-right')]" position="inside">
+            <div class="partner-detail col">                                                           
+                <label class="form-label label" for="my_invois_partner_id_value">ID Number</label>                           
+                <input 
+                    class="detail my_invois_partner_id_value form-control" 
+                    placeholder="ID Number"
+                    id="my_invois_partner_id_value" 
+                    name="my_invois_partner_id_value" 
+                    t-model="changes.my_invois_partner_id_value" 
+                    t-on-change="captureChange" />
+            </div>
+            <div class="partner-detail col">                                                           
+                <label class="form-label label" for="my_invois_ttx">TTX Number</label>                           
+                <input 
+                    class="detail my_invois_ttx form-control" 
+                    placeholder="Tourism Tax Registration Number"
+                    id="my_invois_ttx" 
+                    name="my_invois_ttx" 
+                    t-model="changes.my_invois_ttx" 
+                    t-on-change="captureChange" />
+            </div>
+        </xpath>
+        
+    </t>
+ </templates>

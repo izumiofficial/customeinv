@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_view_industry_classification" model="ir.actions.act_window">
+        <field name="name">Industry Classification</field>
+        <field name="res_model">res.partner.industry</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <menuitem id="menu_industry_classification" 
+              name="Industry Classification" 
+              parent="pc_myinvois.menu_myinvois" sequence="10" 
+              action="action_view_industry_classification"/>
+
+    <record id="industry_classification_tree_views" model="ir.ui.view">
+        <field name="name">res.partner.industry.tree</field>
+        <field name="model">res.partner.industry</field>
+        <field name="arch" type="xml">
+            <tree string="Industry Classification">
+                <field name="name"/>
+                <field name="full_name"/>
+                <field name="code"/>
+                <field name="misc_category_reference"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="industry_classification_form_view" model="ir.ui.view">
+        <field name="name">res.partner.industry.form</field>
+        <field name="model">res.partner.industry</field>
+        <field name="arch" type="xml">
+            <form string="Industry Classification">
+                <group>
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="misc_category_reference"/>
+                </group>
+            </form>
+        </field>
+    </record>
+</odoo>

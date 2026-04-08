@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_view_einvoice_type" model="ir.actions.act_window">
+        <field name="name">E-Invoice Type</field>
+        <field name="res_model">myinvois.einvoice.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <menuitem id="menu_einvoice_type" name="E-Invoice Type" parent="pc_myinvois.menu_myinvois" sequence="3" action="action_view_einvoice_type"/>
+
+    <record id="einvoice_type_tree" model="ir.ui.view">
+        <field name="name">myinvois.einvoice.type.tree</field>
+        <field name="model">myinvois.einvoice.type</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom" string="Tax Type">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="my_invois_einvoice_type"/>
+                <field name="my_invois_einvoice_type_buyer"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="einvoice_type_form" model="ir.ui.view">
+        <field name="name">myinvois.einvoice.type.form</field>
+        <field name="model">myinvois.einvoice.type</field>
+        <field name="arch" type="xml">
+            <form string="Tax Type">
+                <group>
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="my_invois_einvoice_type"/>
+                    <field name="my_invois_einvoice_type_buyer"/>
+                </group>
+            </form>
+        </field>
+    </record>
+</odoo>

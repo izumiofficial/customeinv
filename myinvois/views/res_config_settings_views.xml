@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.account.reports</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='fiscal_localization_setting_container']" position="after">
+
+                <h2>MY Invois Configuration</h2>
+                <div class="row mt16 o_settings_container" name="myinvois_configuration">
+                    <div class="col-12 o_setting_box">
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">MY Invois Product Bill</span>
+                            <span class="fa fa-lg fa-building-o" title="Values set here are company-specific." aria-label="Values set here are company-specific." groups="base.group_multi_company" role="img"/>
+                            <div class="text-muted"> This allows you to choose the product will be generated as invoice line. </div>
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="my_invois_product_bill_id" string="Product" class="col-2 o_light_label"/>
+                                    <field name="my_invois_product_bill_id"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">MY Invois Certificate</span>
+                            <span class="fa fa-lg fa-building-o" title="Values set here are company-specific." aria-label="Values set here are company-specific." groups="base.group_multi_company" role="img"/>
+                            <div class="text-muted">This is for Myinvois certificate </div>
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="my_invois_p12" string="MyInvois private key (p12)" class="col-2 o_light_label"/>
+                                    <field name="my_invois_p12" filename="my_invois_p12_fname"/>
+                                     <field name="my_invois_p12_fname" invisible="1"/>
+                                </div>
+                                <div class="row mt16">
+                                    <label for="my_invois_p12_pin" string="MyInvois private key PIN (p12)" class="col-2 o_light_label"/>
+                                    <field name="my_invois_p12_pin"/>
+                                    <button type="object" name="check_myinvois_cert" string="Check Certificate" class="btn btn-secondary"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">MY Invois Partner Consolidate</span>
+                            <span class="fa fa-lg fa-building-o" title="This is dummy partner for myinvois consolidated invoice partner" aria-label="Values set here are company-specific." groups="base.group_multi_company" role="img"/>
+                            <div class="text-muted"> This is dummy partner for myinvois consolidated invoice partner</div>
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="my_invois_consolidated_partner_id" string="Partner" class="col-2 o_light_label"/>
+                                    <field name="my_invois_consolidated_partner_id"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+            </xpath>
+        </field>
+
+    </record>
+
+</odoo>

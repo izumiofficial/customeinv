@@ -1,0 +1,184 @@
+<odoo>
+    <data noupdate="0">I
+        <record id="product_classification_001" model="myinvois.product.classification">
+            <field name="code">001</field>
+            <field name="name">Breastfeeding equipment </field>
+        </record>
+        <record id="product_classification_002" model="myinvois.product.classification">
+            <field name="code">002</field>
+            <field name="name">Child care centres and kindergartens fees</field>
+        </record>
+        <record id="product_classification_003" model="myinvois.product.classification">
+            <field name="code">003</field>
+            <field name="name">Computer, smartphone or tablet</field>
+        </record>
+        <record id="product_classification_004" model="myinvois.product.classification">
+            <field name="code">004</field>
+            <field name="name">Consolidated e-Invoice </field>
+        </record>
+        <record id="product_classification_005" model="myinvois.product.classification">
+            <field name="code">005</field>
+            <field name="name">Construction materials (as specified under Fourth Schedule of the Lembaga Pembangunan Industri Pembinaan Malaysia Act 1994)</field>
+        </record>
+        <record id="product_classification_006" model="myinvois.product.classification">
+            <field name="code">006</field>
+            <field name="name">Disbursement </field>
+        </record>
+        <record id="product_classification_007" model="myinvois.product.classification">
+            <field name="code">007</field>
+            <field name="name">Donation</field>
+        </record>
+        <record id="product_classification_008" model="myinvois.product.classification">
+            <field name="code">008</field>
+            <field name="name">e-Commerce - e-Invoice to buyer / purchaser</field>
+        </record>
+        <record id="product_classification_009" model="myinvois.product.classification">
+            <field name="code">009</field>
+            <field name="name">e-Commerce - Self-billed e-Invoice to seller, logistics, etc. </field>
+        </record>
+        <record id="product_classification_010" model="myinvois.product.classification">
+            <field name="code">010</field>
+            <field name="name">Education fees</field>
+        </record>
+        <record id="product_classification_011" model="myinvois.product.classification">
+            <field name="code">011</field>
+            <field name="name">Goods on consignment (Consignor)</field>
+        </record>
+        <record id="product_classification_012" model="myinvois.product.classification">
+            <field name="code">012</field>
+            <field name="name">Goods on consignment (Consignee)</field>
+        </record>
+        <record id="product_classification_013" model="myinvois.product.classification">
+            <field name="code">013</field>
+            <field name="name">Gym membership</field>
+        </record>
+        <record id="product_classification_014" model="myinvois.product.classification">
+            <field name="code">014</field>
+            <field name="name">Insurance - Education and medical benefits</field>
+        </record>
+        <record id="product_classification_015" model="myinvois.product.classification">
+            <field name="code">015</field>
+            <field name="name">Insurance - Takaful or life insurance</field>
+        </record>
+        <record id="product_classification_016" model="myinvois.product.classification">
+            <field name="code">016</field>
+            <field name="name">Interest and financing expenses</field>
+        </record>
+        <record id="product_classification_017" model="myinvois.product.classification">
+            <field name="code">017</field>
+            <field name="name">Internet subscription </field>
+        </record>
+        <record id="product_classification_018" model="myinvois.product.classification">
+            <field name="code">018</field>
+            <field name="name">Land and building</field>
+        </record>
+        <record id="product_classification_019" model="myinvois.product.classification">
+            <field name="code">019</field>
+            <field name="name">Medical examination for learning disabilities and early intervention or rehabilitation treatments of learning disabilities</field>
+        </record>
+        <record id="product_classification_020" model="myinvois.product.classification">
+            <field name="code">020</field>
+            <field name="name">Medical examination or vaccination expenses</field>
+        </record>
+        <record id="product_classification_021" model="myinvois.product.classification">
+            <field name="code">021</field>
+            <field name="name">Medical expenses for serious diseases</field>
+        </record>
+        <record id="product_classification_022" model="myinvois.product.classification">
+            <field name="code">022</field>
+            <field name="name">Others</field>
+        </record>
+        <record id="product_classification_023" model="myinvois.product.classification">
+            <field name="code">023</field>
+            <field name="name">Petroleum operations (as defined in Petroleum (Income Tax) Act 1967)</field>
+        </record>
+        <record id="product_classification_024" model="myinvois.product.classification">
+            <field name="code">024</field>
+            <field name="name">Private retirement scheme or deferred annuity scheme </field>
+        </record>
+        <record id="product_classification_025" model="myinvois.product.classification">
+            <field name="code">025</field>
+            <field name="name">Motor vehicle</field>
+        </record>
+        <record id="product_classification_026" model="myinvois.product.classification">
+            <field name="code">026</field>
+            <field name="name">Subscription of books / journals / magazines / newspapers / other similar publications</field>
+        </record>
+        <record id="product_classification_027" model="myinvois.product.classification">
+            <field name="code">027</field>
+            <field name="name">Reimbursement </field>
+        </record>
+        <record id="product_classification_028" model="myinvois.product.classification">
+            <field name="code">028</field>
+            <field name="name">Rental of motor vehicle</field>
+        </record>
+        <record id="product_classification_029" model="myinvois.product.classification">
+            <field name="code">029</field>
+            <field name="name">EV charging facilities (Installation, rental, sale / purchase or subscription fees) </field>
+        </record>
+        <record id="product_classification_030" model="myinvois.product.classification">
+            <field name="code">030</field>
+            <field name="name">Repair and maintenance</field>
+        </record>
+        <record id="product_classification_031" model="myinvois.product.classification">
+            <field name="code">031</field>
+            <field name="name">Research and development </field>
+        </record>
+        <record id="product_classification_032" model="myinvois.product.classification">
+            <field name="code">032</field>
+            <field name="name">Foreign income </field>
+        </record>
+        <record id="product_classification_033" model="myinvois.product.classification">
+            <field name="code">033</field>
+            <field name="name">Self-billed - Betting and gaming </field>
+        </record>
+        <record id="product_classification_034" model="myinvois.product.classification">
+            <field name="code">034</field>
+            <field name="name">Self-billed - Importation of goods </field>
+        </record>
+        <record id="product_classification_035" model="myinvois.product.classification">
+            <field name="code">035</field>
+            <field name="name">Self-billed - Importation of services</field>
+        </record>
+        <record id="product_classification_036" model="myinvois.product.classification">
+            <field name="code">036</field>
+            <field name="name">Self-billed - Others</field>
+        </record>
+        <record id="product_classification_037" model="myinvois.product.classification">
+            <field name="code">037</field>
+            <field name="name">Self-billed - Monetary payment to agents, dealers or distributors </field>
+        </record>
+        <record id="product_classification_038" model="myinvois.product.classification">
+            <field name="code">038</field>
+            <field name="name">Sports equipment, rental / entry fees for sports facilities, registration in sports competition or sports training fees imposed by associations / sports clubs / companies registered with the Sports Commissioner or Companies Commission of Malaysia and carrying out sports activities as listed under the Sports Development Act 1997</field>
+        </record>
+        <record id="product_classification_039" model="myinvois.product.classification">
+            <field name="code">039</field>
+            <field name="name">Supporting equipment for disabled person</field>
+        </record>
+        <record id="product_classification_040" model="myinvois.product.classification">
+            <field name="code">040</field>
+            <field name="name">Voluntary contribution to approved provident fund </field>
+        </record>
+        <record id="product_classification_041" model="myinvois.product.classification">
+            <field name="code">041</field>
+            <field name="name">Dental examination or treatment</field>
+        </record>
+        <record id="product_classification_042" model="myinvois.product.classification">
+            <field name="code">042</field>
+            <field name="name">Fertility treatment</field>
+        </record>
+        <record id="product_classification_043" model="myinvois.product.classification">
+            <field name="code">043</field>
+            <field name="name">Treatment and home care nursing, daycare centres and residential care centers</field>
+        </record>
+        <record id="product_classification_044" model="myinvois.product.classification">
+            <field name="code">044</field>
+            <field name="name">Vouchers, gift cards, loyalty points, etc</field>
+        </record>
+        <record id="product_classification_045" model="myinvois.product.classification">
+            <field name="code">045</field>
+            <field name="name">Self-billed - Non-monetary payment to agents, dealers or distributors</field>
+        </record>
+    </data>
+</odoo>

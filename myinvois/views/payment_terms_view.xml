@@ -1,0 +1,25 @@
+<odoo>
+
+    <record id="payment_terms_tree_view" model="ir.ui.view">
+        <field name="name">payment.terms.tree.view</field>
+        <field name="model">payment.terms</field>
+        <field name="arch" type="xml">
+            <tree string="Payment Mode" editable="bottom">
+                <field name="note"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_payment_terms" model="ir.actions.act_window">
+        <field name="name">Payment Terms</field>
+        <field name="res_model">payment.terms</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem id="menu_payment_terms"
+        name="Payment Terms" 
+        parent="account.account_account_menu" 
+        sequence="2" 
+        action="action_payment_terms"/>
+
+</odoo>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- <record id="action_view_scheme_agency_name" model="ir.actions.act_window">
+        <field name="name">Schemme Agency Name</field>
+        <field name="res_model">scheme.agency.name</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <menuitem id="menu_scheme_agency_name" 
+              name="Scheme Agency Name" 
+              parent="pc_myinvois.menu_myinvois" sequence="20" 
+              action="action_view_scheme_agency_name"/>
+
+    <record id="scheme_agency_name_tree" model="ir.ui.view">
+        <field name="name">scheme.agency.name.tree</field>
+        <field name="model">scheme.agency.name</field>
+        <field name="arch" type="xml">
+            <tree string="Scheme Agency Name">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="scheme_agency_name_form" model="ir.ui.view">
+        <field name="name">scheme.agency.name.form</field>
+        <field name="model">scheme.agency.name</field>
+        <field name="arch" type="xml">
+            <form string="Scheme Agency Name">
+                <group>
+                    <field name="name"/>
+                </group>
+            </form>
+        </field>
+    </record> -->
+</odoo>

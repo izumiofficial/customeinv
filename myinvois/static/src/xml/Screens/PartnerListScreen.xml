@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="PartnerListScreen" t-inherit="point_of_sale.PartnerListScreen" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('more-info')]" position="before">
+            <div t-if="state.detailIsShown and state.editModeProps.partner.id" class="button" t-on-click="validateTIN">
+                Validate Tin
+            </div>
+        </xpath>
+        <xpath expr="//th[@t-if='isBalanceDisplayed']" position="after">
+            <th>TIN Status</th>
+        </xpath>
+    </t>
+</templates>

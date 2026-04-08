@@ -1,0 +1,184 @@
+<odoo>
+
+    <record id="myinvois_document_filter" model="ir.ui.view">
+        <field name="name">myinvois.document.filter</field>
+        <field name="model">myinvois.document</field>
+        <field name="arch" type="xml">
+            <search string="Search Myinvois Document">
+                <field name="my_invois_uuid" string="UUID"/>
+                <field name="my_invois_document_type_id" string="MyInvois Type"/>
+                <field name="my_invois_move_type" string="Odoo Type"/>
+                <field name="my_invois_receiver_name" string="Receiver Name"/>
+                <field name="my_invois_partner_id" string="Issuer Name"/>
+                <filter string="Submitted" name="submitted" domain="[('my_invois_document_status','=','Submitted')]"/>
+                <filter string="Valid" name="valid" domain="[('my_invois_document_status','=','Valid')]"/>
+                <filter string="Invalid" name="invalid" domain="[('my_invois_document_status','=','Invalid')]"/>
+                <filter string="Cancelled" name="cancelled" domain="[('my_invois_document_status','=','Cancelled')]"/>
+                <group expand="0" string="Group By">
+                    <filter name="my_invois_document_type_id" string="Type" context="{'group_by':'my_invois_document_type_id'}"/>
+                    <filter name="my_invois_partner_id" string="Issuer Name" context="{'group_by':'my_invois_partner_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="myinvois_document_tree_view" model="ir.ui.view">
+        <field name="name">myinvois.document.tree.view</field>
+        <field name="model">myinvois.document</field>
+        <field name="arch" type="xml">
+            <tree string="Myinvois Document" create="0">
+                <field name="my_invois_uuid" string="Name"/>
+                <field name="my_invois_document_type_id" string="MyInvois Type"/>
+                <field name="my_invois_move_type" string="Odoo Type"/>
+                <field name="my_invois_submit_date"/>
+                <field name="my_invois_validated_date"/>
+                <field name="my_invois_partner_id"/>
+                <field name="my_invois_receiver_name"/>
+                <field name="my_invois_document_status" string="Status"/>
+                <field name="my_invois_total_amount"/>
+                <field name="my_invois_cancelled_date" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+    
+    <!-- Form View -->
+    <record id="myinvois_document_form_view" model="ir.ui.view">
+        <field name="name">myinvois.document.form.view</field>
+        <field name="model">myinvois.document</field>
+        <field name="arch" type="xml">
+            <form string="Myinvois Document" create="0">
+                <header>
+                    <field name="company_id" invisible="1"/>
+                    <field name="my_invois_company_id_number" invisible="1"/>
+                    <field name="my_invois_document_type" invisible="1"/>
+                    <field name="my_invois_is_billed" invisible="1"/>
+                    <button name="reject_myinvois_doc" type="object" string="Reject Document" class="btn btn-secondary" attrs="{'invisible': ['|', '|', ('my_invois_document_status', '=', 'Cancelled'), ('my_invois_document_type', 'not in', ['01', '02', '03', '04']), ('my_invois_move_type', '!=', 'in_invoice')]}"/>
+                    <button name="myinvois_generate_bill" type="object" string="Generate Bill" class="btn btn-primary" attrs="{'invisible': ['|', '|', '|', ('my_invois_document_status', '=', 'Cancelled'),('my_invois_document_type', 'not in', ['01', '02', '03', '04']), ('my_invois_is_billed', '!=', False), ('my_invois_move_type', '!=', 'in_invoice')]}"/>
+                    <button name="myinvois_generate_vendor_credit_note" type="object" string="Generate Vendor Credit Note" class="btn btn-primary" attrs="{'invisible': ['|', '|', '|', ('my_invois_document_status', '=', 'Cancelled'),('my_invois_document_type', 'not in', ['01', '02', '03', '04']), ('my_invois_is_billed', '!=', False), ('my_invois_move_type', '!=', 'in_refund')]}"/>
+                    <field name="my_invois_document_status" widget="statusbar" statusbar_visible="Submitted,Valid,Invalid"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <field name="my_invois_rejection" invisible="1"/>
+                        <button name="action_view_vendor_bill"
+                            string="Vendor Bill"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-pencil-square-o"
+                            attrs="{'invisible': ['|', ('my_invois_document_type', 'not in', ['01', '02', '03', '04']), ('my_invois_move_type', '!=','in_invoice')]}">
+                        </button>
+                        <button name="action_view_vendor_credit_note"
+                            string="Vendor Credit Note"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-pencil-square-o"
+                            attrs="{'invisible': ['|', ('my_invois_document_type', 'not in', ['01', '02', '03', '04']), ('my_invois_move_type', '!=', 'in_invoice')]}">
+                        </button>
+                        <button name="action_view_customer_invoice"
+                            string="Customer Invoice"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-pencil-square-o"
+                            attrs="{'invisible': [('my_invois_move_type', '!=', 'out_invoice')]}">
+                        </button> 
+                    </div>
+                    <div class="oe_title">
+                        <h1><field name="my_invois_uuid" placeholder="Document ID" readonly="1" required="1"/></h1>
+                    </div>
+                    <group name="document_header">
+                        <group name="doc_detail_left">
+                            <field name="my_invois_doc_type_version" readonly="1"/>
+                            <field name="my_invois_document_type_id" readonly="1"/>
+                            <field name="my_invois_document_type" invisible="1"/>
+                            <field name="my_invois_move_type" readonly="1" string="Odoo Type"/>
+                            <field name="my_invois_partner_tin" readonly="1"/>
+                            <field name="my_invois_partner_id" readonly="1"/>
+                            <field name="my_invois_submit_date" readonly="1"/>
+                            <field name="my_invois_validated_date" readonly="1"/>
+                            <field name="my_invois_cancelled_date" readonly="1"/>
+                            <field name="my_invois_reject_date" readonly="1"/>
+                            <field name="my_invois_cancel_reason" readonly="1"/>
+                            <field name="company_id" invisible="1"/>
+                        </group>
+                        <group name="doc_detail_right">
+                            <field name="my_invois_id_submission" readonly="1"/>
+                            <field name="my_invois_receiver_id_number" readonly="1"/>
+                            <field name="my_invois_receiver_name" readonly="1"/>
+                            <field name="my_invois_currency" readonly="1"/>
+                            <field name="my_invois_net_amount" invisible="1"/>
+                            <field name="my_invois_total_sale" readonly="1"/>
+                            <field name="my_invois_total_amount" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_myinvois_document_all_view" model="ir.actions.act_window">
+        <field name="name">Myinvois Document</field>
+        <field name="res_model">myinvois.document</field>
+        <field name="view_id" ref="myinvois_document_tree_view"/>
+        <!-- <field name="search_view_id" ref="myinvois_document_filter"/> -->
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Myinvois Document
+            </p>
+        </field>
+    </record>
+
+    <record id="action_myinvois_invoice_view" model="ir.actions.act_window">
+        <field name="name">Myinvois Invoice</field>
+        <field name="res_model">myinvois.document</field>
+        <field name="view_id" ref="myinvois_document_tree_view"/>
+        <!-- <field name="search_view_id" ref="myinvois_document_filter"/> -->
+        <field name="domain">[('my_invois_move_type','=','out_invoice')]</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Myinvois Invoice
+            </p>
+        </field>
+    </record>
+
+    <record id="action_myinvois_bill_view" model="ir.actions.act_window">
+        <field name="name">Myinvois Bill</field>
+        <field name="res_model">myinvois.document</field>
+        <field name="view_id" ref="myinvois_document_tree_view"/>
+        <field name="search_view_id" ref="myinvois_document_filter"/>
+        <field name="domain">[('my_invois_move_type','=','in_invoice')]</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Myinvois Bill
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_myinvois_document" 
+        name="Myinvois Document" 
+        parent="pc_myinvois.menu_myinvois" 
+        sequence="2" 
+        action="pc_myinvois.action_myinvois_document_all_view"
+        />
+    <menuitem id="menu_myinvois_invoice" 
+        name="Myinvois Invoice" 
+        parent="account.menu_account_customer" 
+        sequence="12" 
+        action="action_myinvois_invoice_view"
+        />
+    <!-- <menuitem id="menu_myinvois_bill" 
+        name="Myinvois Bill" 
+        parent="account.menu_finance_payables" 
+        sequence="12" 
+        action="action_myinvois_bill_view"
+        /> -->
+
+</odoo>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_view_einvoice_consolidate" model="ir.actions.act_window">
+        <field name="name">MyInvois Consolidate</field>
+        <field name="res_model">myinvois.consolidate</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <menuitem id="menu_einvoice_consolidate" name="MyInvois Consolidate" parent="pc_myinvois.menu_myinvois" sequence="30" action="action_view_einvoice_consolidate"/>
+
+    <record id="myinvois_consolidate_tree" model="ir.ui.view">
+        <field name="name">myinvois.consolidate.tree</field>
+        <field name="model">myinvois.consolidate</field>
+        <field name="arch" type="xml">
+            <tree default_order="name desc">
+                <field name="name"/>
+                <field name="myinvois_consolidate_date"/>
+                <field name="myinvois_consolidate_user_id"/>
+                <field name="myinvois_consolidate_state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="myinvois_consolidate_form" model="ir.ui.view">
+        <field name="name">myinvois.consolidate.form</field>
+        <field name="model">myinvois.consolidate</field>
+        <field name="arch" type="xml">
+            <form string="MyInvois Logs">
+            <header>
+                <button string="Submit to MyInvois" attrs="{'invisible': [('my_invois_uuid', '!=', False)]}" name="submit_consolidated" type="object" class="oe_highlight"/>
+                <button name="cancel_myinvois_doc" type="object" string="Cancel Document" class="btn btn-secondary" attrs="{'invisible': ['|',('myinvois_consolidate_state','in',['draft','Cancelled']),('myinvois_document_id', '=', False)]}" />
+                <button name="action_get_document_details" type="object" string="Check MyInvois Status" class="btn btn-secondary" attrs="{'invisible': [('my_invois_uuid', '=', False)]}"/>
+                <field name="myinvois_consolidate_state" widget="statusbar"/>
+            </header>
+            <sheet>
+            
+            <div class="oe_title">
+                <h1>
+                    <field name="name" readonly="1" placeholder="Draft"/>
+                </h1>
+            </div>
+            <group>
+                <group name="left">
+                    <field name="myinvois_consolidate_user_id" required="1"/>
+                    <field name="my_invois_uuid" readonly="1"/>
+                    <field name="myinvois_document_id" readonly="1"/>
+                    <field name="my_invois_id_submission" readonly="1"/>
+                </group>
+                <group name="right">
+                    <!-- <field name="my_invois_period_id"/> -->
+                    <field name="myinvois_consolidate_date" required="1"/>
+                    <field name="my_invois_qr_code" widget="image" />
+                </group>
+            </group>
+            <notebook>
+                <page id="invoice_list" name="invoice_tab" string="Invoice">
+                    <field name="invoice_ids" widget="many2many" attrs="{'readonly': [('myinvois_consolidate_state', '!=', 'Draft')]}" options="{'no_create_edit': True}">
+                        <tree>
+                            <field name="currency_id" optional="hide" string="Currency" readonly="1" invisible="1"/>
+                            <field name="name" />
+                            <field name="partner_id" />
+                            <field name="invoice_date" string="Invoice Date"/>
+                            <field name="amount_total" />
+                            <field name="amount_tax" />
+                            <field name="state" />
+                        </tree>
+                    </field>
+                </page>
+            </notebook>
+            </sheet>
+            <div class="oe_chatter">
+                <field name="message_follower_ids"/>
+                <field name="activity_ids"/>
+                <field name="message_ids"/>
+            </div>
+            </form>
+        </field>
+    </record>
+</odoo>

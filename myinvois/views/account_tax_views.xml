@@ -1,0 +1,152 @@
+<odoo>
+    <record id="account_tax_group_view_search" model="ir.ui.view">
+            <field name="name">account.tax.group.search.filters</field>
+            <field name="model">account.tax.group</field>
+            <field name="arch" type="xml">
+                <search string="Search Group">
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_tax_group_tree" model="ir.ui.view">
+            <field name="name">account.tax.group.tree</field>
+            <field name="model">account.tax.group</field>
+            <field name="arch" type="xml">
+                <tree string="Account Tax Group">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="tax_type_id"/>
+                    <field name="property_tax_payable_account_id"
+                        domain="[('company_id', '=', context['force_account_company'])] if context.get('force_account_company') else []"
+                    />
+                    <field name="property_tax_receivable_account_id"
+                        domain="[('company_id', '=', context['force_account_company'])] if context.get('force_account_company') else []"
+                    />
+                    <field name="property_advance_tax_payment_account_id"
+                        domain="[('company_id', '=', context['force_account_company'])] if context.get('force_account_company') else []"
+                    />
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_tax_group_form" model="ir.ui.view">
+            <field name="name">account.tax.group.form</field>
+            <field name="model">account.tax.group</field>
+            <field name="arch" type="xml">
+                <form string="Account Tax Group">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="tax_type_id"/>
+                                <field name="sequence"/>
+                            </group>
+                            <group>
+                                <field name="property_tax_payable_account_id"/>
+                                <field name="property_tax_receivable_account_id"/>
+                                <field name="property_advance_tax_payment_account_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_tax_group" model="ir.actions.act_window">
+            <field name="name">Tax Groups</field>
+            <field name="res_model">account.tax.group</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_tax_group_tree"/>
+            <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new tax group
+            </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_action_tax_group" action="action_tax_group" parent="account.account_account_menu" groups="account.group_account_user" sequence="2"/>
+
+        <record id="view_tax_group_tree" model="ir.ui.view">
+            <field name="name">account.tax.group.tree</field>
+            <field name="model">account.tax.group</field>
+            <field name="arch" type="xml">
+                <tree string="Account Tax Group">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="tax_type_id"/>
+                    <field name="property_tax_payable_account_id"
+                        domain="[('company_id', '=', context['force_account_company'])] if context.get('force_account_company') else []"
+                    />
+                    <field name="property_tax_receivable_account_id"
+                        domain="[('company_id', '=', context['force_account_company'])] if context.get('force_account_company') else []"
+                    />
+                    <field name="property_advance_tax_payment_account_id"
+                        domain="[('company_id', '=', context['force_account_company'])] if context.get('force_account_company') else []"
+                    />
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_tax_group_form" model="ir.ui.view">
+            <field name="name">account.tax.group.form</field>
+            <field name="model">account.tax.group</field>
+            <field name="arch" type="xml">
+                <form string="Account Tax Group">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="tax_type_id"/>
+                                <field name="sequence"/>
+                            </group>
+                            <group>
+                                <field name="property_tax_payable_account_id"/>
+                                <field name="property_tax_receivable_account_id"/>
+                                <field name="property_advance_tax_payment_account_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    <record id="myinvois_tax_form_view" model="ir.ui.view">
+        <field name="name">pc.myinvois.tax.form.view</field>
+        <field name="model">account.tax</field>
+        <field name="inherit_id" ref="account.view_tax_form"/>
+        <field name="arch" type="xml">
+            <field name="type_tax_use" position="after">
+                <field name="tax_type_id"/>
+            </field>
+        </field>
+    </record>
+    <record id="myinvois_tax_tree_view" model="ir.ui.view">
+        <field name="name">pc.myinvois.tax.tree.view</field>
+        <field name="model">account.tax</field>
+        <field name="inherit_id" ref="account.view_tax_tree"/>
+        <field name="arch" type="xml">
+            <field name="description" position="after">
+                <field name="tax_type_id"/>
+            </field>
+        </field>
+    </record>
+
+
+        <record id="action_tax_group" model="ir.actions.act_window">
+            <field name="name">Tax Groups</field>
+            <field name="res_model">account.tax.group</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_tax_group_tree"/>
+            <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new tax group
+            </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_action_tax_group" action="action_tax_group" parent="account.account_account_menu" groups="account.group_account_user" sequence="2"/>
+
+</odoo>

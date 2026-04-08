@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_view_einvoice_log" model="ir.actions.act_window">
+        <field name="name">MyInvois API Logs</field>
+        <field name="res_model">myinvois.log</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <menuitem id="menu_einvoice_log" name="MyInvois API Logs" parent="pc_myinvois.menu_myinvois" sequence="3" action="action_view_einvoice_log"/>
+
+    <record id="myinvois_log_tree" model="ir.ui.view">
+        <field name="name">myinvois.log.tree</field>
+        <field name="model">myinvois.log</field>
+        <field name="arch" type="xml">
+            <tree create="0" default_order="my_invois_date desc" string="MyInvois Logs" decoration-info="my_invois_status_code in ('200', '202')" decoration-danger="my_invois_status_code not in ('200', '202')">
+                <field name="name" string="URL"/>
+                <field name="my_invois_response"/>
+                <field name="my_invois_status_code"/>
+                <field name="my_invois_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="myinvois_log_form" model="ir.ui.view">
+        <field name="name">myinvois.log.form</field>
+        <field name="model">myinvois.log</field>
+        <field name="arch" type="xml">
+            <form create="0" string="MyInvois Logs">
+                <group>
+                    <field name="name" readonly="1"/>
+                    <field name="res_id" readonly="1"/>
+                    <field name="res_model" readonly="1"/> 
+                    <field name="my_invois_status_code" readonly="1"/>
+                    <field name="my_invois_date" readonly="1"/>
+                    <field name="my_invois_response" readonly="1"/>
+                    <field name="my_invois_payload" readonly="1"/>
+                    <field name="raw_payload" readonly="1"/>
+                </group>
+            </form>
+        </field>
+    </record>
+</odoo>

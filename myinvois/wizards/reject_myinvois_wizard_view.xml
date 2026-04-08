@@ -1,0 +1,28 @@
+<odoo>
+
+    <record id="reject_myinvois_wizard_form_view" model="ir.ui.view">
+        <field name="name">reject.myinvois.wizard.form.view</field>
+        <field name="model">reject.myinvois.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Reject">
+                <group>
+                    <field name="myinvois_reject_reason" required="1"/>
+                </group>
+                <footer>
+                    <button string="Reject" name="reject_document" type="object" class="send btn-primary o_mail_send"/>
+                    <button string="Discard" class="btn-secondary" special="cancel" data-hotkey="x"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_reject_myinvois_wizard_form" model="ir.actions.act_window">
+        <field name="name">Batch Reject Myinvois</field>
+        <field name="res_model">reject.myinvois.wizard</field>
+        <field name="view_id" ref="reject_myinvois_wizard_form_view"/>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="pc_myinvois.model_myinvois_document"/>
+        <field name="binding_view_types">list</field>
+    </record>
+
+</odoo>

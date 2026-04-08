@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">    
+        <record id="myinvois_doc_comp_rule" model="ir.rule">
+            <field name="name">MyInvois Document Multi-company</field>
+            <field name="model_id" ref="pc_myinvois.model_myinvois_document"/>
+            <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+        </record>
+
+        <record id="myinvois_conso_doc_comp_rule" model="ir.rule">
+            <field name="name">MyInvois Consolidated Multi-company</field>
+            <field name="model_id" ref="pc_myinvois.model_myinvois_consolidate"/>
+            <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+        </record>
+    </data>
+</odoo>

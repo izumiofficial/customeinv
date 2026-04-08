@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+        <template id="report_myinvois">
+            <t t-call="web.basic_layout">
+                <t t-foreach="docs" t-as="o">
+                    <div class="page page_batch_payment">
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <b><t t-esc="o.company_id.name"/></b><br/>
+                                <div t-field="o.company_id.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;], &quot;no_marker&quot;: True}"/>
+                                <t t-esc="o.company_id.phone"/><br/>
+                                <t t-esc="o.company_id.email"/><br/>
+                            </div>
+                        </div>
+                        <t t-if="o.my_invois_einvoice_type_id.code == '11'">
+                            <t t-set="suplier" t-value="o.partner_id"/>
+                            <t t-set="buyer" t-value="o.company_id.partner_id"/>
+                        </t>
+                        <t t-else="">
+                            <t t-set="suplier" t-value="o.company_id.partner_id"/>
+                            <t t-set="buyer" t-value="o.partner_id"/>
+                        </t>
+                        <br/>
+                        <div class="row">
+                            <div class="col-6 text-start">
+                                <br/>
+                                Supplier TIN : <t t-esc="suplier.vat"/><br/>
+                                Supplier Registration Number : <t t-esc="suplier.my_invois_partner_id_value"/><br/>
+                                Supplier SST ID : <t t-esc="suplier.my_invois_sst"/><br/>
+                                Supplier MSIC : <t t-esc="suplier.industry_id.code"/><br/>
+                                Supplier business activity description : <br/>
+                            </div>
+                            <div class="col-6 text-end">
+                                <b>E-INVOICE</b><br/>
+                                e-Invoice Type : <t t-esc="o.my_invois_einvoice_type_id.code"/> - <t t-esc="o.my_invois_einvoice_type_id.name"/><br/>
+                                e-Invoice version : 1.0<br/>
+                                e-Invoice code : <t t-esc="o.name"/><br/>
+                                Unique Identifier No : <t t-esc="o.my_invois_uuid"/><br/>
+                                Original Invoice Ref. No. : 
+                                <t t-if="o.reversed_entry_id">
+                                  <t t-esc="o.reversed_entry_id.name"/>
+                                 </t>
+                                 <t t-else="">
+                                   -
+                                  </t> 
+                                <br/>
+                                Invoice Date and Time : <t t-esc="o.invoice_date"/><br/>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-6 text-left">
+                                Buyer TIN : <t t-esc="buyer.vat"/><br/>
+                                Buyer Name : <t t-esc="buyer.name"/><br/>
+                                Buyer Identification Number : <t t-esc="buyer.my_invois_partner_id_value"/> <br/>
+                                Buyer Address : <t t-esc="buyer.street"/>,<t t-esc="buyer.city"/>,<t t-esc="buyer.country_id.name"/><br/>
+                                Buyer Contact Number (Mobile) : <t t-esc="buyer.phone"/><br/>
+                                Buyer Email : <t t-esc="buyer.email"/><br/>
+                            </div>
+                            <div class="col-6 text-end">
+                                <t t-if="o.my_invois_qr_code">
+                                    <div id="picture">
+                                        <img t-att-src="image_data_uri(o.my_invois_qr_code)"/>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                        <br/>
+                        <style>
+                            th{
+                                background-color:black;
+                                color:white;
+                            }
+                        </style>
+                        <table class="table table-borderless table-sm">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Classification</th>
+                                    <th class="text-center">Description</th>
+                                    <th class="text-center">Quantity</th>
+                                    <th class="text-center">Unit Price</th>
+                                    <th class="text-center">Amount</th>
+                                    <th class="text-center">Disc</th>
+                                    <th class="text-center">Tax Rate</th>
+                                    <th class="text-center">Tax Amount</th>
+                                    <th class="text-center">Total Product/Service Price <br/>(incl. tax)</th>
+                                </tr>
+                            </thead>
+                            <t t-set="current_subtotal" t-value="0"/>
+                            <t t-set="current_total" t-value="0"/>
+                            <t t-set="tax_total" t-value="0"/>
+                            <tr t-foreach="o.invoice_line_ids" t-as="line">
+                                <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal"/>
+                                <t t-set="current_total" t-value="current_total + line.price_total"/>
+                                <t t-set="tax_total" t-value="tax_total + line.price_total - line.price_subtotal"/>
+                                <td class="text-center"><span t-field="line.product_id.categ_id.product_classification_id.code"/></td>
+                                <td class="text-start"><span t-field="line.name"/></td>
+                                <td class="text-center"><span t-field="line.quantity"/></td>
+                                <td class="text-center"><span t-field="line.price_unit" t-options="{'widget': 'monetary', 'display_currency': line.currency_id}"/></td>
+                                <td class="text-center"><span><t t-esc="line.price_subtotal" t-options="{'widget': 'monetary', 'display_currency': line.currency_id}"/></span></td>
+                                <td class="text-center"><span t-field="line.discount">%</span></td>
+                                <td class="text-center"><span t-esc="', '.join(map(lambda x: (x.name), line.tax_ids))" id="line_tax_ids"/></td>
+                                <td class="text-center"><span t-esc="line.price_total - line.price_subtotal" t-options="{'widget': 'monetary', 'display_currency': line.currency_id}"/></td>
+                                <td class="text-end"><span t-esc="line.price_total" t-options="{'widget': 'monetary', 'display_currency': line.currency_id}"/></td>
+                            </tr>
+                            <tr>
+                                <td/>
+                                <td/>
+                                <td style="font-weight: bold;" colspan="2">Subtotal</td>
+                                <td/>
+                                <td/>
+                                <td/>
+                                <td/>
+                                <td class="text-end" style="font-weight: bold;"><span t-esc="current_subtotal" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></td>
+                            </tr>
+                            <tr>
+                                <td/>
+                                <td/>
+                                <td style="font-weight: bold;" colspan="2">Total excluding tax</td>
+                                <td/>
+                                <td/>
+                                <td/>
+                                <td/>
+                                <td class="text-end" style="font-weight: bold;"><span t-esc="current_subtotal" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></td>
+                            </tr>
+                            <tr>
+                                <td/>
+                                <td/>
+                                <td style="font-weight: bold;" colspan="2">Tax amount</td>
+                                <td/>
+                                <td/>
+                                <td/>
+                                <td/>
+                                <td class="text-end" style="font-weight: bold;"><span t-esc="tax_total" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></td>
+                            </tr>
+                            <tr>
+                                <td/>
+                                <td/>
+                                <td style="font-weight: bold;" colspan="2">Total including tax</td>
+                                <td/>
+                                <td/>
+                                <td/>
+                                <td/>
+                                <td class="text-end" style="font-weight: bold;"><span t-esc="current_total" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></td>
+                            </tr>
+                            <tr>
+                                <td/>
+                                <td/>
+                                <td style="font-weight: bold;" colspan="2">Total payable amount</td>
+                                <td/>
+                                <td/>
+                                <td/>
+                                <td/>
+                                <td class="text-end" style="font-weight: bold;"><span t-esc="current_total" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></td>
+                            </tr>
+                        </table>
+                        <div class="row">
+                            <div class="col-6">
+                                <!--Digital Signature : <br/>-->
+                                <!--<br/>-->
+                                <!--Date and Time of Validation : <br/>-->
+                                This document in a visual presentation of the e-Invoice <br/>
+                            </div>
+                            <div class="col-6"/>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+</odoo>

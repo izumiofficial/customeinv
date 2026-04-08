@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="myinvois_einvoice_code_01" model="myinvois.einvoice.type">
+        <field name="code">01</field>
+        <field name="name">Invoice</field>
+    </record>
+    <record id="myinvois_einvoice_code_02" model="myinvois.einvoice.type">
+        <field name="code">02</field>
+        <field name="name">Credit Note</field>
+    </record>
+    <record id="myinvois_einvoice_code_03" model="myinvois.einvoice.type">
+        <field name="code">03</field>
+        <field name="name">Debit Note</field>
+    </record>
+    <record id="myinvois_einvoice_code_04" model="myinvois.einvoice.type">
+        <field name="code">04</field>
+        <field name="name">Refund Note</field>
+    </record>
+    <record id="myinvois_einvoice_code_11" model="myinvois.einvoice.type">
+        <field name="code">11</field>
+        <field name="name">Self-billed Invoice</field>
+    </record>
+    <record id="myinvois_einvoice_code_12" model="myinvois.einvoice.type">
+        <field name="code">12</field>
+        <field name="name">Self-billed Credit Note</field>
+    </record>
+    <record id="myinvois_einvoice_code_13" model="myinvois.einvoice.type">
+        <field name="code">13</field>
+        <field name="name">Self-billed Debit Note</field>
+    </record>
+    <record id="myinvois_einvoice_code_14" model="myinvois.einvoice.type">
+        <field name="code">14</field>
+        <field name="name">Self-billed Refund Note</field>
+    </record>
+</odoo>

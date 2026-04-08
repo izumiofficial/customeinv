@@ -1,0 +1,51 @@
+<odoo>
+
+    <record id="cancel_myinvois_wizard_form_view" model="ir.ui.view">
+        <field name="name">cancel.myinvois.wizard.form.view</field>
+        <field name="model">cancel.myinvois.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Cancel">
+                <group>
+                    <group>
+                        <field name="myinvois_cancel_reason" required="1"/>
+                    </group>
+                    <group>
+                    </group>
+                    <group string="Document(s) to be cancelled">
+                        <field name="text_information_success" readonly="1" string=" "/>
+                    </group>
+                    <group name="information_error" string="Document can't be cancelled">
+                        <field name="text_information_fail" readonly="1" string=" "/>
+                    </group>
+                    <group invisible="1">
+                        <field name="invoice_ids" widget="many2many_tags" readonly="1"/>
+                        <field name="myinvois_consolidate_ids" widget="many2many_tags" readonly="1"/>
+                    </group>
+                </group>
+                <footer>
+                    <button string="Cancel Document" name="cancel_documents" type="object" class="send btn-primary o_mail_send"/>
+                    <button string="Discard" class="btn-secondary" special="cancel" data-hotkey="x"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_cancel_myinvois_wizard_form" model="ir.actions.act_window">
+        <field name="name">Myinvois - Cancel Submission</field>
+        <field name="res_model">cancel.myinvois.wizard</field>
+        <field name="view_id" ref="cancel_myinvois_wizard_form_view"/>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_view_types">list</field>
+    </record>
+
+    <record id="action_cancel_myinvois_for_consolidate_wizard_form" model="ir.actions.act_window">
+        <field name="name">Myinvois - Cancel Submission</field>
+        <field name="res_model">cancel.myinvois.wizard</field>
+        <field name="view_id" ref="cancel_myinvois_wizard_form_view"/>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="pc_myinvois.model_myinvois_consolidate"/>
+        <field name="binding_view_types">list</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="PartnerLine" t-inherit="point_of_sale.PartnerLine" t-inherit-mode="extension" owl="1">
+        <xpath expr="//td[hasclass('partner-line-balance')]" position="after">
+            <t t-set="status_tin" t-value="props.partner.status_partner_validated_tin"/>
+            <t t-if="status_tin == 'draft'">
+                <div>Never Verified Before</div>
+            </t>
+            <t t-elif="status_tin == 'validated'">
+                <div>Validated</div>
+            </t>
+            <t t-elif="status_tin == 'invalid'">
+                <div>Invalid</div>
+            </t>
+            <t t-else="">
+                <div></div>
+            </t>
+        </xpath>
+    </t>
+</templates>

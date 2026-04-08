@@ -1,0 +1,56 @@
+<odoo>
+
+    <record id="myinvois_document_search_form_view" model="ir.ui.view">
+        <field name="name">myinvois.document.search.form.view</field>
+        <field name="model">myinvois.document.search</field>
+        <field name="arch" type="xml">
+            <form string="Document Search">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Search by Doc ID"/></h1>
+                    </div>
+                    <group>
+                        <group name="submission_date_filter" string="Submission Date Filter">
+                            
+                            <field name="submission_date_from" attrs="{'required': [('submission_date_to', '=', False), '|', ('issue_date_from', '=', False), ('issue_date_to', '=', False)]}"/> <!-- required="submission_date_to != False or (issue_date_from == False and issue_date_to == False)" -->
+                            <field name="submission_date_to" attrs="{'required': [('submission_date_from', '!=', False), '|', ('issue_date_from', '=', False), ('issue_date_to', '=', False)]}"/> <!-- required="submission_date_from != False or (issue_date_from == False and issue_date_to == False)"-->
+                        </group>
+                        <group name="issue_date_filter" string="Issue Date Filter">
+                            <field name="issue_date_from" attrs="{'required': [('issue_date_to', '!=', False), '|', ('submission_date_to', '=', False), ('submission_date_from', '=', False)]}"/> <!-- required="issue_date_to != False or (submission_date_to == False and submission_date_from == False)" -->
+                            <field name="issue_date_to" attrs="{'required': [('issue_date_from', '!=', False), '|', ('submission_date_to', '=', False), ('submission_date_from', '=', False)]}"/> <!-- required="issue_date_from != False or (submission_date_to == False and submission_date_from == False)" -->
+                        </group>
+                    </group>
+                    <group>
+                        <group name="direction_filter" string="Direction Filter">
+                            <field name="direction"/>
+                            <!-- <field name="issuer_tin" attrs="{'invisible': [('direction', '!=', 'received')]}" />
+                            <field name="receiver_tin" attrs="{'invisible': [('direction', '!=', 'sent')]}" /> -->
+                        </group>
+                        <group name="status_filter" string="Status Filter">
+                            <field name="doc_status"/>
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button string="Search" name="search_myinvois_document" type="object" class="send btn-primary o_mail_send"/>
+                    <!-- <button groups="base.group_no_one" string="Search (Dummy Data)" name="search_myinvois_document_dummy" type="object" class="send btn-primary o_mail_send"/> -->
+                    <button string="Discard" class="btn-secondary" special="cancel" data-hotkey="x"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_myinvois_document_search_form" model="ir.actions.act_window">
+        <field name="name">Myinvois Document Search</field>
+        <field name="res_model">myinvois.document.search</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_prepaid_payment"
+        name="Document Search" 
+        parent="pc_myinvois.menu_myinvois" 
+        sequence="2" 
+        action="action_myinvois_document_search_form"/>
+
+</odoo>

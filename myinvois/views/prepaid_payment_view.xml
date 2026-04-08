@@ -1,0 +1,45 @@
+<odoo>
+
+    <record id="prepaid_payment_tree_view" model="ir.ui.view">
+        <field name="name">prepaid.payment.tree.view</field>
+        <field name="model">prepaid.payment</field>
+        <field name="arch" type="xml">
+            <tree string="Prepaid Payment">
+                <field name="paid_date"/>
+                <field name="paid_amount"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="prepaid_payment_form_view" model="ir.ui.view">
+        <field name="name">prepaid.payment.form.view</field>
+        <field name="model">prepaid.payment</field>
+        <field name="arch" type="xml">
+            <form string="Prepaid Payment">
+                <sheet>
+                    <group name="header_group">
+                        <group name="group_01">
+                            <field name="paid_date"/>
+                        </group>
+                        <group name="group_02">
+                            <field name="paid_amount"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_prepaid_payment" model="ir.actions.act_window">
+        <field name="name">Prepaid Payment</field>
+        <field name="res_model">prepaid.payment</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_prepaid_payment"
+        name="Prepaid Payment" 
+        parent="account.account_account_menu" 
+        sequence="2" 
+        action="action_prepaid_payment"/>
+
+</odoo>

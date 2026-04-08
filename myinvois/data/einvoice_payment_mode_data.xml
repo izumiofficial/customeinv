@@ -1,0 +1,36 @@
+<odoo>
+    <data noupdate="0">
+        <record id="payment_mode_cash" model="einvoice.payment.mode">
+            <field name="code">01</field>
+            <field name="name">Cash</field>
+        </record>
+        <record id="payment_mode_cheque" model="einvoice.payment.mode">
+            <field name="code">02</field>
+            <field name="name">Cheque</field>
+        </record>
+        <record id="payment_mode_bank_transfer" model="einvoice.payment.mode">
+            <field name="code">03</field>
+            <field name="name">Bank Transfer</field>
+        </record>
+        <record id="payment_mode_credit_card" model="einvoice.payment.mode">
+            <field name="code">04</field>
+            <field name="name">Credit Card</field>
+        </record>
+        <record id="payment_mode_debit_card" model="einvoice.payment.mode">
+            <field name="code">05</field>
+            <field name="name">Debit Card</field>
+        </record>
+        <record id="payment_mode_digital_wallet" model="einvoice.payment.mode">
+            <field name="code">06</field>
+            <field name="name">e-Wallet / Digital Wallet</field>
+        </record>
+        <record id="payment_mode_digital_bank" model="einvoice.payment.mode">
+            <field name="code">07</field>
+            <field name="name">Digital Bank</field>
+        </record>
+        <record id="payment_mode_others" model="einvoice.payment.mode">
+            <field name="code">08</field>
+            <field name="name">Others</field>
+        </record>
+    </data>
+</odoo>

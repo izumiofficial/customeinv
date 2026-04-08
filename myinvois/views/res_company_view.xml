@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="salesforce_view_company_form">
+        <field name="name">salesforce.view.company.form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <button string="Validate Tin" name="validate_tin_company" 
+                    attrs="{'invisible': [('is_malaysia_country', '!=', True)]}" type="object" class="oe_highlight"/>
+                </header>
+            </xpath>
+            <xpath expr="//notebook/page[1]" position="after">
+                <page string="MyInvois API" attrs="{'invisible': [('is_malaysia_country', '!=', True)]}">
+                    <group string="Credentials">
+                        <group>
+                            <field name="is_malaysia_country" invisible="1"/>
+                            <field name="client_credentials"/>
+                            <field name="scope" string="Scope"/>
+                            <field name="client_id" />
+                            <field name="client_secret" password="True"/>
+                            <field name="request_token_url"/>
+                            <field name="my_invois_portal_url"/>
+                            <div colspan="2" class="button_token">
+                                <button string='Generate Token' type="object" name="get_access_token"
+                                    class="oe_highlight" icon="fa-arrow-circle-right" />
+                            </div>
+                            <separator/>
+                            <field name="myinvois_access_token"/>
+                            <field name="expire_token"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+            <!-- field for validate tin -->
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="my_invois_partner_id_type"/>
+                <field name="my_invois_partner_id_value"/>
+                <field name="status_partner_validated_tin" readonly="1"/>
+                <field name="last_check_validate_tin" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

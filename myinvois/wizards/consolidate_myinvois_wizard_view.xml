@@ -1,0 +1,35 @@
+<odoo>
+
+    <record id="consolidate_myinvois_wizard_form_view" model="ir.ui.view">
+        <field name="name">consolidate.myinvois.wizard.form.view</field>
+        <field name="model">consolidate.myinvois.wizard</field>
+        <field name="arch" type="xml">
+            <form string="consolidate">
+                <group >
+                    <group>
+                        <field name="myinvois_consolidate_date" required="1"/>
+                        <!-- <field name="my_invois_period_id" required="1"/> -->
+                        <field name="invoice_ids" string="To consolidate" widget="many2many_tags" readonly="1"/>
+
+                    </group>
+                    <group name="submited_nor_consolidate_invoice" string="Invoice(s) already Submitted / Consolidated / not Confirmed" class="text-danger" attrs="{'invisible': [('myinvois_invoice_wrong_ids', '=', False)]}">
+                        <field string=" " name="myinvois_invoice_wrong_ids" widget="many2many_tags" readonly="1"/>
+                    </group>
+                </group>
+                <footer>
+                    <button string="Confirm" name="consolidate_invoice" type="object" class="send btn-primary o_mail_send"/>
+                    <button string="Discard" class="btn-secondary" special="cancel" data-hotkey="x"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_consolidate_myinvois_wizard_form" model="ir.actions.act_window">
+        <field name="name">MyInvois - Consolidate &amp; Submit</field>
+        <field name="res_model">consolidate.myinvois.wizard</field>
+        <field name="view_id" ref="consolidate_myinvois_wizard_form_view"/>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_view_types">list</field>
+    </record>
+</odoo>

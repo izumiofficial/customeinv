@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="TicketScreen" t-inherit="point_of_sale.TicketScreen" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('control-buttons')]" position="inside">
+            <t t-if="getSelectedSyncedOrder() &amp;&amp; (!getSelectedSyncedOrder().my_invois_status_submission_rel || getSelectedSyncedOrder().my_invois_status_submission_rel == 'Invalid') &amp;&amp; getSelectedSyncedOrder().state == 'invoiced' ">
+                <SubmitDocumentButton order="_selectedSyncedOrder"/>
+            </t>
+        </xpath>
+        <xpath expr="//div[hasclass('header-row')]//div[@name='delete']" position="before">
+            <div class="col narrow p-2">Status Submission</div>
+        </xpath>
+        
+        <xpath expr="//div[hasclass('order-row')]//div[@name='delete']" position="before">
+            <div class="col narrow p-2">
+                <t t-if="order.my_invois_status_submission_rel">
+                    <t t-esc="order.my_invois_status_submission_rel">
+                    </t>
+                </t>
+            </div>
+        </xpath>
+    </t>
+</templates>

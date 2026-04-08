@@ -1,0 +1,53 @@
+<odoo>
+
+    <record id="ir_cron_get_token" model="ir.cron">
+        <field name="name">Auto-generate token access for MyInvois</field>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">hours</field>
+        <field name="numbercall">-1</field>
+        <field name="active">True</field>
+        <field name="doall" eval="False"/>
+        <field name="model_id" ref="base.model_res_company"/>
+        <field name="state">code</field>
+        <field name="code">model.get_access_token()</field>
+    </record>
+
+    <record id="ir_cron_fetch_myinvois_doc" model="ir.cron">
+        <field name="name">Auto-fetch document MyInvois</field>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="active">True</field>
+        <field name="doall" eval="False"/>
+        <field name="model_id" ref="base.model_res_company"/>
+        <field name="state">code</field>
+        <field name="code">model.fetch_all_myinvois_document_company()</field>
+    </record>
+
+    <record id="batch_validate_tin" model="ir.actions.server">
+        <field name="name">MyInvois - Validate TIN</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="binding_model_id" ref="base.model_res_partner"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+            for r in records:
+                r.with_delay().validate_tin_partner()
+        </field>
+        </record>
+    
+    <record id="batch_submit_myinvois" model="ir.actions.server">
+        <field name="name">MyInvois - Submit Document</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+            <field name="code">
+                for r in records:
+                    r.with_delay().submit_document_action()
+            </field>
+        </record>
+
+</odoo>

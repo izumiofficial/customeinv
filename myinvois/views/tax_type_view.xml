@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_view_tax_type" model="ir.actions.act_window">
+        <field name="name">Tax Type</field>
+        <field name="res_model">tax.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_tax_type" name="Tax Type" parent="pc_myinvois.menu_myinvois" sequence="2" action="action_view_tax_type"/>
+
+    <record id="tax_type_tree" model="ir.ui.view">
+        <field name="name">tax.type.tree</field>
+        <field name="model">tax.type</field>
+        <field name="arch" type="xml">
+            <tree string="Tax Type">
+                <field name="code"/>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="tax_type_form" model="ir.ui.view">
+        <field name="name">tax.type.form</field>
+        <field name="model">tax.type</field>
+        <field name="arch" type="xml">
+            <form string="Tax Type">
+                <group>
+                    <field name="code"/>
+                    <field name="name"/>
+                </group>
+            </form>
+        </field>
+    </record>
+</odoo>

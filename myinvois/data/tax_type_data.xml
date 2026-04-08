@@ -1,0 +1,32 @@
+<odoo>
+    <data noupdate="0">
+        <record id="tax_type_sales_tax" model="tax.type">
+            <field name="code">01</field>
+            <field name="name">Sales Tax</field>
+        </record>
+        <record id="tax_type_service_tax" model="tax.type">
+            <field name="code">02</field>
+            <field name="name">Service Tax</field>
+        </record>
+        <record id="tax_type_tourism_tax" model="tax.type">
+            <field name="code">03</field>
+            <field name="name">Tourism Tax</field>
+        </record>
+        <record id="tax_type_high_value_goods_tax" model="tax.type">
+            <field name="code">04</field>
+            <field name="name">High-Value Goods Tax</field>
+        </record>
+        <record id="tax_type_sales_tax_on_low_value_goods_tax" model="tax.type">
+            <field name="code">05</field>
+            <field name="name">Sales Tax on Low Value Goods</field>
+        </record>
+        <record id="tax_type_not_applicable" model="tax.type">
+            <field name="code">06</field>
+            <field name="name">Not Applicable</field>
+        </record>
+        <record id="tax_type_tax_exemption" model="tax.type">
+            <field name="code">E</field>
+            <field name="name">Tax exemption (where applicable)</field>
+        </record>
+    </data>
+</odoo>

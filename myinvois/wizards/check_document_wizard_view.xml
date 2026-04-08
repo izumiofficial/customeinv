@@ -1,0 +1,46 @@
+<odoo>
+    <record id="check_myinvois_wizard_form_view" model="ir.ui.view">
+        <field name="name">check.document.wizard.form.view</field>
+        <field name="model">check.document.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Cancel">
+                <group>
+                    <group string="Document(s) to be checked">
+                        <field name="text_information_success" readonly="1" string=' '/>
+                    </group>
+                    <group name="information_error" string="This document(s) can't be checked">
+                        <field name="text_information_fail" readonly="1" string=' '/>
+                    </group>
+                    <!-- for developer only -->
+                    <!-- <group groups="base.group_no_one">
+                        <field name="invoice_ids" widget="many2many_tags" readonly="1"/>
+                        <field name="myinvois_consolidate_ids" widget="many2many_tags" readonly="1"/>
+                    </group> -->
+                </group>
+                <footer>
+                    <button string="Check Document" name="get_document_details" type="object" class="send btn-primary o_mail_send"/>
+                    <button string="Discard" class="btn-secondary" special="cancel" data-hotkey="x"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_check_myinvois_wizard_form" model="ir.actions.act_window">
+        <field name="name">Myinvois - Check Submission Status</field>
+        <field name="res_model">check.document.wizard</field>
+        <field name="view_id" ref="check_myinvois_wizard_form_view"/>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_view_types">list</field>
+    </record>
+
+    <record id="action_check_myinvois_for_consolidate_wizard_form" model="ir.actions.act_window">
+        <field name="name">Myinvois - Check Submission Status</field>
+        <field name="res_model">check.document.wizard</field>
+        <field name="view_id" ref="check_myinvois_wizard_form_view"/>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="pc_myinvois.model_myinvois_consolidate"/>
+        <field name="binding_view_types">list</field>
+    </record>
+
+</odoo>

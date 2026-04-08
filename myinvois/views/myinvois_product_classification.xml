@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_partner_industry_view_tree" model="ir.ui.view">
+        <field name="name">res.partner.industry.view.form.inherit</field>
+        <field name="model">res.partner.industry</field>
+        <field name="inherit_id" ref="base.res_partner_industry_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='full_name']" position="after">
+                <field name="code" />
+                <field name="misc_category_reference" />
+            </xpath>
+        </field>
+    </record>
+    
+    <record id="res_partner_industry_view_form" model="ir.ui.view">
+        <field name="name">res.partner.industry.view.form.inherit</field>
+        <field name="model">res.partner.industry</field>
+        <field name="inherit_id" ref="base.res_partner_industry_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='full_name']" position="after">
+                <field name="code" />
+                <field name="misc_category_reference" />
+            </xpath>
+        </field>
+    </record>
+    
+    <record id="action_view_classification_code" model="ir.actions.act_window">
+        <field name="name">Product Classification</field>
+        <field name="res_model">myinvois.product.classification</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_classification_code" name="Product Classification" parent="pc_myinvois.menu_myinvois" sequence="2" action="action_view_classification_code"/>
+
+    <record id="classification_code_tree" model="ir.ui.view">
+        <field name="name">myinvois.product.classification.tree</field>
+        <field name="model">myinvois.product.classification</field>
+        <field name="arch" type="xml">
+            <tree string="Tax Type">
+                <field name="code"/>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="classification_code_form" model="ir.ui.view">
+        <field name="name">myinvois.product.classification.form</field>
+        <field name="model">myinvois.product.classification</field>
+        <field name="arch" type="xml">
+            <form string="Tax Type">
+                <group>
+                    <field name="code"/>
+                    <field name="name"/>
+                </group>
+            </form>
+        </field>
+    </record>
+</odoo>

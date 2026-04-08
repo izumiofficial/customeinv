@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="inherit_res_partner_inherit_contact" model="ir.ui.view">
+        <field name="name">res.partner.view.form.inherit.my.invois</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="my_invois_partner_id_type" />
+                <field name="my_invois_partner_id_value" />
+                <field name="my_invois_sst"/>
+                <field name="my_invois_ttx"/>
+                <field name="status_partner_validated_tin" readonly="1"/>
+                <field name="last_check_validate_tin" readonly="1"/>
+            </xpath>
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <field name="is_malaysia_country" invisible="1"/>
+                    <button string="Validate Tin" name="validate_tin_partner" type="object" class="oe_highlight"/>
+                </header>
+            </xpath>
+            <!-- <xpath expr="//notebook" position="inside">
+                <page name="invois_data" string="MyInvois">
+                    <group>
+                        <group>        
+                            <field name="scheme_agency_name_id" />
+                        </group>
+                    </group>
+                </page>
+            </xpath> -->
+            <xpath expr="//field[@name='street2']" position="after">
+                <field name="street3" placeholder="Street 3..." class="o_address_street" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
